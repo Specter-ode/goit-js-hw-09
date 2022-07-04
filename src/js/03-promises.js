@@ -28,13 +28,12 @@ function onBtnSubmit(e) {
       .catch(resultOfPromise => errorInPromise(i, resultOfPromise));
     delayEl += stepEl;
   }
+}position
+function successInPromise(position, timeOfDelay) {
+  console.log(`✅ Fulfilled promise ${position} in ${timeOfDelay}ms`);
+  Notify.success(`Fulfilled promise ${position} in ${timeOfDelay}ms`);
 }
-
-function successInPromise(a, b) {
-  console.log(`✅ Fulfilled promise ${a} in ${b}ms`);
-  Notify.success(`Fulfilled promise ${a} in ${b}ms`);
-}
-function errorInPromise(a, b) {
-  console.log(`❌ Rejected promise ${a} in ${b}ms`);
-  Notify.failure(`Rejected promise ${a} in ${b}ms`);
-}
+function errorInPromise(position, timeOfDelay) {
+  console.log(`❌ Rejected promise ${position} in ${timeOfDelay}ms`);
+  Notify.failure(`Rejected promise ${position} in ${timeOfDelay}ms`);
+}timeOfDelay

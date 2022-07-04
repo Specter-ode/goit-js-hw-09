@@ -12,10 +12,10 @@ const inputTime = document.querySelector('input[type="text"]');
 const startTimerBtn = document.querySelector('button[data-start]');
 startTimerBtn.setAttribute('disabled', 'disabled');
 
-daysEl = document.querySelector('[data-days]');
-hoursEl = document.querySelector('[data-hours]');
-minutesEl = document.querySelector('[data-minutes]');
-secondsEl = document.querySelector('[data-seconds]');
+const daysEl = document.querySelector('[data-days]');
+const hoursEl = document.querySelector('[data-hours]');
+const minutesEl = document.querySelector('[data-minutes]');
+const secondsEl = document.querySelector('[data-seconds]');
 
 const options = {
   enableTime: true,
