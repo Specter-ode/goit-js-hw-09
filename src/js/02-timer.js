@@ -1,7 +1,13 @@
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
-
+const containerEl = document.querySelector(".timer");
+const fieldEl = document.querySelectorAll(".field");
+containerEl.style.display = "flex";
+containerEl.style.marginTop = "30px"
+containerEl.style.justifyContent = "space-evenly";
+containerEl.style.fontSize = "50px"
+console.log(containerEl.children)
 const startTimerBtn = document.querySelector('button[data-start]');
 const startTime = document.querySelector('input[type="text"]');
 
