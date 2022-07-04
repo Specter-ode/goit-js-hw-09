@@ -1,17 +1,18 @@
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
-const containerEl = document.querySelector(".timer");
-const fieldEl = document.querySelectorAll(".field");
-containerEl.style.display = "flex";
-containerEl.style.marginTop = "30px"
-containerEl.style.justifyContent = "space-evenly";
-containerEl.style.fontSize = "50px"
-console.log(containerEl.children)
-const startTimerBtn = document.querySelector('button[data-start]');
-const startTime = document.querySelector('input[type="text"]');
+const containerEl = document.querySelector('.timer');
 
+containerEl.style.display = 'flex';
+containerEl.style.marginTop = '30px';
+containerEl.style.justifyContent = 'space-evenly';
+containerEl.style.fontSize = '50px';
+
+// const timerId = null
+const inputTime = document.querySelector('input[type="text"]');
+const startTimerBtn = document.querySelector('button[data-start]');
 startTimerBtn.setAttribute('disabled', 'disabled');
+
 daysEl = document.querySelector('[data-days]');
 hoursEl = document.querySelector('[data-hours]');
 minutesEl = document.querySelector('[data-minutes]');
@@ -31,28 +32,29 @@ const options = {
       return;
     }
     startTimerBtn.removeAttribute('disabled');
-    setInterval(() => {
-      const current = Date.now();
-      let timerValue = selectedTime - current;
-      const { days, hours, minutes, seconds } = convertMs(timerValue);
-      startTimerBtn.setAttribute('disabled', 'disabled');
-      console.log({ days, hours, minutes, seconds });
-      daysEl.textContent = `${days}`;
-      hoursEl.textContent = `${hours}`;
-      minutesEl.textContent = `${minutes}`;
-      secondsEl.textContent = `${seconds}`;
-      if ((timerValue = 0)) {
-        clearInterval(inventId);
-      }
-    }, 1000);
   },
 };
 flatpickr('input[type="text"]', options);
 
-// function makeBtnDisabled () {
-//     startTimerBtn.removeAttribute('disabled');
-// }
-// startTimerBtn.addEventListener('click', makeBtnDisabled)
+function startTimer() {
+  const selectedTimeAtInput = Date.parse(inputTime.value);
+  console.log(selectedTimeAtInput);
+  let timerId = setInterval(() => {
+    const current = Date.now();
+    let timerValue = selectedTimeAtInput - current;
+    const { days, hours, minutes, seconds } = convertMs(timerValue);
+    startTimerBtn.setAttribute('disabled', 'disabled');
+    daysEl.textContent = `${days}`;
+    hoursEl.textContent = `${hours}`;
+    minutesEl.textContent = `${minutes}`;
+    secondsEl.textContent = `${seconds}`;
+    if (timerValue < 1000) {
+      clearInterval(timerId)
+    }
+  }, 0);
+
+}
+startTimerBtn.addEventListener('click', startTimer);
 
 function convertMs(ms) {
   const second = 1000;
