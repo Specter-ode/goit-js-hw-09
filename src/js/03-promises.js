@@ -28,7 +28,7 @@ function onBtnSubmit(e) {
       .catch(resultOfPromise => errorInPromise(i, resultOfPromise));
     delayEl += stepEl;
   }
-}position
+}
 function successInPromise(position, timeOfDelay) {
   console.log(`✅ Fulfilled promise ${position} in ${timeOfDelay}ms`);
   Notify.success(`Fulfilled promise ${position} in ${timeOfDelay}ms`);
