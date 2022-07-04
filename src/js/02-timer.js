@@ -42,6 +42,7 @@ function startTimer() {
     const current = Date.now();
     let timerValue = selectedTimeAtInput - current;
     const { days, hours, minutes, seconds } = convertMs(timerValue);
+    inputTime.setAttribute('disabled', 'disabled');
     startTimerBtn.setAttribute('disabled', 'disabled');
     daysEl.textContent = `${days}`;
     hoursEl.textContent = `${hours}`;
