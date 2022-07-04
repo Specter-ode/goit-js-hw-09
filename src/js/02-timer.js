@@ -4,14 +4,12 @@ import 'flatpickr/dist/flatpickr.min.css';
 
 const startTimerBtn = document.querySelector('button[data-start]');
 const startTime = document.querySelector('input[type="text"]');
-// startTimerBtn.addEventListener('click', makeBtnDisabled)
+
 startTimerBtn.setAttribute('disabled', 'disabled');
 daysEl = document.querySelector('[data-days]');
 hoursEl = document.querySelector('[data-hours]');
 minutesEl = document.querySelector('[data-minutes]');
 secondsEl = document.querySelector('[data-seconds]');
-console.log(daysEl.textContent)
-inventId = null;
 
 const options = {
   enableTime: true,
@@ -27,29 +25,28 @@ const options = {
       return;
     }
     startTimerBtn.removeAttribute('disabled');
-        inventId = setInterval(() => {
-            const current = Date.now();
-            let timerValue = selectedTime - current;
-            const { days, hours, minutes, seconds } = convertMs(timerValue);
-            startTimerBtn.setAttribute('disabled', 'disabled');
-            console.log({ days, hours, minutes, seconds });
-            daysEl.textContent = `${days}`;
-            hoursEl.textContent = `${hours}`;
-            minutesEl.textContent = `${minutes}`;
-            secondsEl.textContent = `${seconds}`;
-            if ( timerValue = 0) {
-                clearInterval(inventId)
-            }
-          }, 1000);
-    },
-  }
+    setInterval(() => {
+      const current = Date.now();
+      let timerValue = selectedTime - current;
+      const { days, hours, minutes, seconds } = convertMs(timerValue);
+      startTimerBtn.setAttribute('disabled', 'disabled');
+      console.log({ days, hours, minutes, seconds });
+      daysEl.textContent = `${days}`;
+      hoursEl.textContent = `${hours}`;
+      minutesEl.textContent = `${minutes}`;
+      secondsEl.textContent = `${seconds}`;
+      if ((timerValue = 0)) {
+        clearInterval(inventId);
+      }
+    }, 1000);
+  },
+};
 flatpickr('input[type="text"]', options);
 
 // function makeBtnDisabled () {
 //     startTimerBtn.removeAttribute('disabled');
 // }
-
-
+// startTimerBtn.addEventListener('click', makeBtnDisabled)
 
 function convertMs(ms) {
   const second = 1000;
