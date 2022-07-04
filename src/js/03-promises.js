@@ -36,4 +36,4 @@ function successInPromise(position, timeOfDelay) {
 function errorInPromise(position, timeOfDelay) {
   console.log(`❌ Rejected promise ${position} in ${timeOfDelay}ms`);
   Notify.failure(`Rejected promise ${position} in ${timeOfDelay}ms`);
-}timeOfDelay
+}
