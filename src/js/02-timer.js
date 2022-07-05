@@ -76,3 +76,38 @@ function convertMs(ms) {
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
+
+
+function createPromise(position, delay) {
+  return new Promise((resolve, reject) => {
+    const shouldResolve = Math.random() > 0.3;
+    setTimeout(() => {
+      if (shouldResolve) {
+        resolve({position, delay});
+      }
+      reject({position, delay});
+    }, delay);
+  });
+}
+
+function onBtnSubmit(e) {
+  e.preventDefault();
+  const { elements: { delay, step, amount },} = e.currentTarget;
+  console.log(`First delay: ${delay.value}, Delay step: ${step.value}, Amount: ${amount.value}`);
+  let delayEl = Number(delay.value);
+  let stepEl = Number(step.value);
+  for (let i = 1; i <= Number(amount.value); i += 1) {
+    createPromise(i, delayEl)
+      .then(successInPromise)
+      .catch(errorInPromise);
+    delayEl += stepEl;
+  }
+}
+function successInPromise({position, delay}) {
+  console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+  Notify.success(`Fulfilled promise ${position} in ${delay}ms`);
+}
+function errorInPromise({position, delay}) {
+  console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+  Notify.failure(`Rejected promise ${position} in ${delay}ms`);
+}
